@@ -1,3 +1,10 @@
+use serde::Deserialize;
+// puxando biblioteca de 
+// manipulação de arquivos Json
+
+// aqui mandamos o compilador do Rust
+// implementar automaticamente a função
+// de deserializar para essa struct
 #[derive(Deserialize)]
 pub struct Significado {
     creator      : Option<String>,
@@ -15,4 +22,6 @@ pub struct Significado {
     xml          : String
 } // struct Significado
 
+// um conjunto de Significados nada mais 
+// é do que uma lista/vetor de Significado
 type Significados = Vec<Significado>;
