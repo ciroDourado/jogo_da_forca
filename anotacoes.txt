@@ -1,0 +1,15 @@
+o client faz dois tipos de requisição:
+|> faz request de uma palavra aleatória
+|> faz request de uma palavra específica
+
+independente dos casos, a montagem
+da requisição é a mesma!
+
+a única coisa que muda, no nosso caso,
+é o path e a query.
+
+nossa instância de client pode ser uma,
+viva por todo o programa
+
+nossa necessidade é apenas uma função que
+inicializa o client no link específico
