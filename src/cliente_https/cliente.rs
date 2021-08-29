@@ -20,8 +20,8 @@ impl<'a> Cliente<'a> {
 
     pub fn get(&self, caminho: &'a str) -> String {
         self.montar_url(caminho)
-            .map(montar_requisicao)
-            .map(validar_requisicao);
+            .and_then(montar_requisicao)
+            .map(fazer_requisicao);
         "a".to_string()
     } // get
 
@@ -47,15 +47,6 @@ fn montar_requisicao(url: Uri)
         .uri(url)
         .body(Body::from(r#"{"library":"hyper"}"#))
 } // montar_requisicao
-
-
-fn validar_requisicao(requisicao: HttpResult<Request<Body>>)
-    -> String
-{
-    match requisicao {
-        Ok(req) => fazer_requisicao(req) ,
-        Err(_)  => String::new() }
-} // validar_requisicao
 
 
 use futures::executor::block_on;
