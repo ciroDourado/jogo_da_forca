@@ -8,5 +8,7 @@ async fn main() -> () {
     let cliente = Cliente::conectar_no(dominio);
 
     println!("{}", cliente.get("/random"));
+    println!("{}", cliente.get("/random"));
+    println!("{}", cliente.get("/é"));
     println!("tudo certo até aqui :3");
 } // main
