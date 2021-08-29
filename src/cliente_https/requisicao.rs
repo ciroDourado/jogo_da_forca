@@ -28,10 +28,7 @@ use super::resposta::converter_em_string;
 pub fn fazer_requisicao(req: Request<Body>)
     -> String
 {
-    let future = async move {
-        cliente_https().request(req).await
-    };
-    block_on(future)
+    block_on( cliente_https().request(req) )
         .map(extrair_o_body)
         .map(converter_em_bytes)
         .map(converter_em_string)

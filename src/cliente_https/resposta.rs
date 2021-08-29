@@ -14,8 +14,7 @@ pub fn extrair_o_body(response: Response<Body>)
 pub fn converter_em_bytes(body: Body)
     -> Bytes
 {
-    let future = async move { to_bytes(body).await };
-    match block_on(future) {
+    match block_on( to_bytes(body) ) {
         Ok(res) => res,
         Err(_)  => Bytes::new() }
 } // converter_em_bytes
