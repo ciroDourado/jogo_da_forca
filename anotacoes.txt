@@ -13,3 +13,11 @@ viva por todo o programa
 
 nossa necessidade é apenas uma função que
 inicializa o client no link específico
+
+a interface do meu cliente https deve ser
+como segue: primeiro damos o host principal,
+e cada get deve ser o caminho + queries
+
+let cliente      = Cliente::novo("api.dicionario-aberto.net");
+let aleatoria    = cliente.get("/random");
+let significados = cliente.get("/word/palavra/");
