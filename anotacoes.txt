@@ -21,3 +21,5 @@ e cada get deve ser o caminho + queries
 let cliente      = Cliente::novo("api.dicionario-aberto.net");
 let aleatoria    = cliente.get("/random");
 let significados = cliente.get("/word/palavra/");
+
+testando
