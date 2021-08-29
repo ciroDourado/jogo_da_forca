@@ -1,5 +1,5 @@
 use serde::Deserialize;
-// puxando biblioteca de 
+// puxando biblioteca de
 // manipulação de arquivos Json
 
 // aqui mandamos o compilador do Rust
@@ -17,11 +17,11 @@ pub struct Significado {
     revision_id  : Option<i32>,
     sense        : Option<i32>,
     timestamp    : Option<String>,
-    word         : String,
+    pub word     : String,
     word_id      : Option<i32>,
-    xml          : String
+    pub xml      : String
 } // struct Significado
 
-// um conjunto de Significados nada mais 
+// um conjunto de Significados nada mais
 // é do que uma lista/vetor de Significado
 type Significados = Vec<Significado>;

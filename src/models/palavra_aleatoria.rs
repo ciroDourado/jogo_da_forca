@@ -9,5 +9,5 @@ use serde::Deserialize;
 pub struct PalavraAleatoria {
     sense: i32,
     wid  : i32,
-    word : String
+    pub word : String
 } // struct PalavraAleatoria
