@@ -24,4 +24,4 @@ pub struct Significado {
 
 // um conjunto de Significados nada mais
 // é do que uma lista/vetor de Significado
-type Significados = Vec<Significado>;
+pub type Significados = Vec<Significado>;
