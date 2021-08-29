@@ -13,9 +13,9 @@ pub struct Cliente<'a> {
 
 
 impl<'a> Cliente<'a> {
-    pub fn novo(dominio: &'a str) -> Self {
+    pub fn conectar_no(dominio: &'a str) -> Self {
         Cliente { dominio }
-    } // novo
+    } // conectar_no
 
 
     pub fn get(&self, caminho: &'a str) -> String {

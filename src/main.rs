@@ -4,8 +4,8 @@ use cliente_https::cliente::Cliente;
 
 #[tokio::main]
 async fn main() -> () {
-    let no_dominio = "api.dicionario-aberto.net";
-    let cliente    = Cliente::novo(no_dominio);
+    let dominio = "api.dicionario-aberto.net";
+    let cliente = Cliente::conectar_no(dominio);
 
     println!("{}", cliente.get("/random"));
     println!("tudo certo até aqui :3");
