@@ -36,7 +36,6 @@ impl<'a> Cliente<'a> {
             .build()
     } // montar_url
 
-
 } // impl Cliente
 
 
@@ -57,3 +56,30 @@ fn validar_requisicao(requisicao: HttpResult<Request<Body>>)
         Ok(req) => fazer_requisicao(req) ,
         Err(_)  => String::new() }
 } // validar_requisicao
+
+
+use futures::executor::block_on;
+fn fazer_requisicao(req: Request<Body>)
+    -> String
+{
+    let future = async move {
+        cliente_https().request(req).await
+    };
+    match block_on(future) {
+        Ok(res) => String::new() , // continuar daqui!!
+        Err(_)  => String::new() }
+} // fazer_requisicao
+
+
+
+use hyper::client::HttpConnector;
+use hyper_tls::HttpsConnector;
+use hyper::Client;
+fn cliente_https()
+    -> Client<HttpsConnector<HttpConnector>>
+{
+    let https   = HttpsConnector::new();
+    let cliente = Client::builder()
+        .build::<_, hyper::Body>(https);
+    return cliente;
+} // cliente_https
