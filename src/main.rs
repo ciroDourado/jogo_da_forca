@@ -29,8 +29,7 @@ fn formatar_url(partes: Vec<&str>) -> String {
     let cada_parte = partes.into_iter();
 
     let caminho = cada_parte
-        .map(codificar_para_url)
-        .map(transformar_em_string)
+        .map(aplicar_codificacao)
         .collect::<TudoNumaLista>()
         .join("/");
     f!("/{caminho}/")
@@ -43,16 +42,10 @@ extern crate fstrings;
 type TudoNumaLista = Vec<String>;
 
 
-use std::borrow::Cow;
-fn codificar_para_url(data: &str)
-    -> Cow<'_, str>
-{
-    urlencoding::encode(data)
-} // codificar_para_url
-
-
-fn transformar_em_string(cow: Cow<'_, str>)
+fn aplicar_codificacao(data: &str)
     -> String
 {
-    cow.to_string()
-} // transformar_em_string
+    urlencoding::encode(data)
+        .to_owned()
+        .to_string()
+} // aplicar_codificacao
