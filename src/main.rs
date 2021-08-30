@@ -16,22 +16,43 @@ async fn main() -> () {
 
     let json_parte1 = cliente.get("/random");
     let aleatoria   = deserializar::<PalavraAleatoria>(&json_parte1);
-    let buscada     = formatar( vec!["word", &aleatoria.word] );
+    let caminho     = vec!["word", &aleatoria.word];
+    let buscada     = formatar_url( caminho );
 
     let json_parte2  = cliente.get(&buscada);
     let significados = deserializar::<Significados>(&json_parte2);
-
-    println!("{}", significados[0].word);
-    println!("{}", significados[0].xml);
 } // main
 
 
-fn formatar(partes: Vec<&str>) -> String {
-    let mut novas: Vec<String> = Vec::new();
+// código experimental!
+fn formatar_url(partes: Vec<&str>) -> String {
+    let cada_parte = partes.into_iter();
 
-    for parte in partes {
-        let nova = urlencoding::encode(parte);
-        novas.push(nova.to_string());
-    }
-    format!("/{}/", novas.join("/"))
-}
+    let caminho = cada_parte
+        .map(codificar_para_url)
+        .map(transformar_em_string)
+        .collect::<TudoNumaLista>()
+        .join("/");
+    f!("/{caminho}/")
+} // formatar_url
+
+
+#[macro_use]
+extern crate fstrings;
+// apenas para facilitar a leitura
+type TudoNumaLista = Vec<String>;
+
+
+use std::borrow::Cow;
+fn codificar_para_url(data: &str)
+    -> Cow<'_, str>
+{
+    urlencoding::encode(data)
+} // codificar_para_url
+
+
+fn transformar_em_string(cow: Cow<'_, str>)
+    -> String
+{
+    cow.to_string()
+} // transformar_em_string
